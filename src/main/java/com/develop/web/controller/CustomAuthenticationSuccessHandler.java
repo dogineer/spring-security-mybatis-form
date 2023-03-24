@@ -22,7 +22,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
                                         Authentication authentication) throws IOException, ServletException {
 
         logger.info("admin login Success !!");
-        response.sendRedirect("/");
+        response.sendRedirect("/success");
     }
 
 }

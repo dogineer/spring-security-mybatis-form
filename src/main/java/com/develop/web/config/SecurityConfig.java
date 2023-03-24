@@ -39,15 +39,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
             .csrf().disable() // post 방식으로 값을 전송할 때 token을 사용해야하는 보안 설정을 해제
             .authorizeRequests()
-            .antMatchers("/").permitAll()
-            .antMatchers("/home").hasRole("USER")
+            .antMatchers("/").permitAll() // 전체 권한 허용
+            .antMatchers("/success").hasRole("USER") // role가 "USER" 경우 권한 허용
             .anyRequest()
             .authenticated();
         http
-            .formLogin()
-            .loginPage("/")
-            .loginProcessingUrl("/auth/login")
-            .usernameParameter("userid")
-            .passwordParameter("userPassword");
+            .formLogin() // form 데이터 로그인
+            .loginPage("/") // 로그인 페이지 사용자 경로
+            .loginProcessingUrl("/auth/login") // 로그인 동작 주소
+            .usernameParameter("userid") // 아이디값 파라미터
+            .passwordParameter("userPassword") // 비밀번호값 파라미터
+            .successHandler(authenticationSuccessHandler) // 성공 핸들러
+            .failureHandler(authenticationFailureHandler); // 실패 핸들러
     }
 }
