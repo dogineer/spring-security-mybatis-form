@@ -21,7 +21,7 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
                                         AuthenticationException exception) throws IOException, ServletException {
 
         logger.error("admin login Failed !!");
-        response.sendRedirect("/admin?auth=fail");
+        response.sendRedirect("/");
     }
 
 }

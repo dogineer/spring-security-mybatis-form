@@ -40,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .csrf().disable() // post 방식으로 값을 전송할 때 token을 사용해야하는 보안 설정을 해제
             .authorizeRequests()
             .antMatchers("/").permitAll() // 전체 권한 허용
-            .antMatchers("/success").hasRole("USER") // role가 "USER" 경우 권한 허용
+            .antMatchers("/success").hasRole("ADMIN") // role가 "USER" 경우 권한 허용
             .anyRequest()
             .authenticated();
         http
